@@ -1,7 +1,7 @@
 # Amiga emulator for Raspberry Pi
 
 # History of this fork
-
+- WIP merge from WinUAE 3.4.0 (warning: not finished, does not work yet!)
 - New target platform: Pi 3
 - Optimizations for Pi 3 added
 - Pi 3 is now the default target if no Platform is specified
