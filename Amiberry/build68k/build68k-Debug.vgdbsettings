@@ -1,63 +1,37 @@
 <?xml version="1.0"?>
 <VisualGDBProjectSettings2 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <ConfigurationName>Release</ConfigurationName>
+  <ConfigurationName>Debug</ConfigurationName>
   <Project xsi:type="com.visualgdb.project.linux">
     <CustomSourceDirectories>
       <Directories />
       <PathStyle>MinGWUnixSlash</PathStyle>
     </CustomSourceDirectories>
-    <BuildHost>
-      <Transport>None</Transport>
-    </BuildHost>
     <DeploymentHost>
       <HostName>172.16.2.50</HostName>
       <Transport>SSH</Transport>
       <UserName>pi</UserName>
     </DeploymentHost>
-    <MainSourceTransferCommand>
-      <SkipWhenRunningCommandList>false</SkipWhenRunningCommandList>
-      <RemoteHost>
-        <Transport>None</Transport>
-      </RemoteHost>
-      <LocalDirectory>$(ProjectDir)</LocalDirectory>
-      <RemoteDirectory>/tmp/VisualGDB/$(ProjectDirUnixStyle)</RemoteDirectory>
-      <FileMasks>
-        <string>*.cpp</string>
-        <string>*.h</string>
-        <string>*.hpp</string>
-        <string>*.c</string>
-        <string>*.cc</string>
-        <string>*.cxx</string>
-        <string>*.mak</string>
-        <string>Makefile</string>
-        <string>*.txt</string>
-        <string>*.cmake</string>
-      </FileMasks>
-      <TransferNewFilesOnly>true</TransferNewFilesOnly>
-      <IncludeSubdirectories>true</IncludeSubdirectories>
-      <DeleteDisappearedFiles>false</DeleteDisappearedFiles>
-    </MainSourceTransferCommand>
     <AllowChangingHostForMainCommands>false</AllowChangingHostForMainCommands>
     <SkipBuildIfNoSourceFilesChanged>false</SkipBuildIfNoSourceFilesChanged>
     <IgnoreFileTransferErrors>false</IgnoreFileTransferErrors>
     <RemoveRemoteDirectoryOnClean>false</RemoveRemoteDirectoryOnClean>
-    <SkipDeploymentTests>true</SkipDeploymentTests>
+    <SkipDeploymentTests>false</SkipDeploymentTests>
     <MainSourceDirectoryForLocalBuilds>$(ProjectDir)</MainSourceDirectoryForLocalBuilds>
   </Project>
   <Build xsi:type="com.visualgdb.build.msbuild">
     <Toolchain>
       <Name>Raspberry PI</Name>
       <UniqueID>com.visualgdb.raspberry_pi</UniqueID>
-      <Location>C:\SysGCC\raspberry</Location>
+      <Location>c:\SysGCC\raspberry</Location>
       <UnixSystem>false</UnixSystem>
-      <GCC>C:\SysGCC\raspberry\bin\arm-linux-gnueabihf-gcc.exe</GCC>
-      <GXX>C:\SysGCC\raspberry\bin\arm-linux-gnueabihf-g++.exe</GXX>
-      <GDB>C:\SysGCC\raspberry\bin\arm-linux-gnueabihf-gdb.exe</GDB>
-      <AR>C:\SysGCC\raspberry\bin\arm-linux-gnueabihf-ar.exe</AR>
-      <OBJCOPY>C:\SysGCC\raspberry\bin\arm-linux-gnueabihf-objcopy.exe</OBJCOPY>
-      <Make>C:\SysGCC\raspberry\bin\make.exe</Make>
+      <GCC>c:\SysGCC\raspberry\bin\arm-linux-gnueabihf-gcc.exe</GCC>
+      <GXX>c:\SysGCC\raspberry\bin\arm-linux-gnueabihf-g++.exe</GXX>
+      <GDB>c:\SysGCC\raspberry\bin\arm-linux-gnueabihf-gdb.exe</GDB>
+      <AR>c:\SysGCC\raspberry\bin\arm-linux-gnueabihf-ar.exe</AR>
+      <OBJCOPY>c:\SysGCC\raspberry\bin\arm-linux-gnueabihf-objcopy.exe</OBJCOPY>
+      <Make>c:\SysGCC\raspberry\bin\make.exe</Make>
       <AdditionalPathDirectories>
-        <string>C:\SysGCC\raspberry\bin</string>
+        <string>c:\SysGCC\raspberry\bin</string>
       </AdditionalPathDirectories>
       <RequireCmdExe>true</RequireCmdExe>
       <RequireCtrlBreak>false</RequireCtrlBreak>
@@ -66,7 +40,7 @@
         <PathStyle>MinGWUnixSlash</PathStyle>
       </SourceDirMapping>
     </Toolchain>
-    <ProjectFile>Amiberry.vcxproj</ProjectFile>
+    <ProjectFile>build68k.vcxproj</ProjectFile>
     <RemoteBuildEnvironment>
       <Records />
     </RemoteBuildEnvironment>
@@ -104,17 +78,28 @@
       <EnableNonStopMode>false</EnableNonStopMode>
     </AdditionalGDBSettings>
     <LaunchGDBSettings xsi:type="GDBLaunchParametersNewInstance">
+      <GDBEnvironment>
+        <Records>
+          <Record>
+            <VariableName>LANG</VariableName>
+            <Value>en_US.UTF-8</Value>
+          </Record>
+          <Record>
+            <VariableName>PATH</VariableName>
+            <Value>c:\SysGCC\raspberry\bin;%PATH%</Value>
+          </Record>
+        </Records>
+      </GDBEnvironment>
       <DebuggedProgram>$(TargetPath)</DebuggedProgram>
       <GDBServerPort>2000</GDBServerPort>
       <ProgramArguments />
     </LaunchGDBSettings>
     <GenerateCtrlBreakInsteadOfCtrlC>false</GenerateCtrlBreakInsteadOfCtrlC>
     <DeploymentTargetPath>/tmp/$(TargetFileName)</DeploymentTargetPath>
-    <X11WindowMode>Remote</X11WindowMode>
+    <X11WindowMode>Local</X11WindowMode>
     <KeepConsoleAfterExit>false</KeepConsoleAfterExit>
     <RunGDBUnderSudo>false</RunGDBUnderSudo>
     <DeploymentMode>Auto</DeploymentMode>
-    <LdLibraryPath />
     <DeployWhenLaunchedWithoutDebugging>true</DeployWhenLaunchedWithoutDebugging>
   </Debug>
   <CustomBuild>

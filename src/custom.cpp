@@ -5,25 +5,27 @@
   *
   * Copyright 1995-2002 Bernd Schmidt
   * Copyright 1995 Alessandro Bissacco
-  * Copyright 2000-2010 Toni Wilen
+  * Copyright 2000-2015 Toni Wilen
   */
 
 #include "sysconfig.h"
 #include "sysdeps.h"
+
 #include <ctype.h>
 #include <assert.h>
+#include <math.h>
 
 #include "options.h"
 #include "uae.h"
 #include "gensound.h"
 #include "audio.h"
 #include "sd-pandora/sound.h"
+#include "events.h"
 #include "memory.h"
 #include "custom.h"
 #include "newcpu.h"
 #include "cia.h"
 #include "disk.h"
-#include "savestate.h"
 #include "blitter.h"
 #include "xwin.h"
 #include "inputdevice.h"
@@ -33,6 +35,7 @@
 #include "gui.h"
 #include "picasso96.h"
 #include "drawing.h"
+#include "savestate.h"
 #include "akiko.h"
 #include "gfxboard.h"
 #include "blkdev.h"
@@ -324,12 +327,15 @@ static void update_mirrors(void)
   aga_mode = (currprefs.chipset_mask & CSMASK_AGA) != 0;
 }
 
-STATIC_INLINE uae_u8 *pfield_xlateptr (uaecptr plpt, int bytecount)
+STATIC_INLINE uae_u8 *pfield_xlateptr(uaecptr plpt, int bytecount)
 {
-  plpt &= chipmem_bank.mask;
-  if((plpt + bytecount) > chipmem_bank.allocated)
-    return NULL;
-  return chipmem_bank.baseaddr + plpt;
+	if (!chipmem_check_indirect(plpt, bytecount)) {
+		static int count = 0;
+		if (!count)
+			count++, write_log(_T("Warning: Bad playfield pointer %08x\n"), plpt);
+		return NULL;
+	}
+	return chipmem_xlate_indirect(plpt);
 }
 
 STATIC_INLINE void docols (struct color_entry *colentry)

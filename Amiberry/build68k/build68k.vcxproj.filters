@@ -1,0 +1,216 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source files">
+      <UniqueIdentifier>{64dc911b-1a5e-44e8-aa75-56f40bde7dda}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header files">
+      <UniqueIdentifier>{118f18dd-6585-464c-93e0-0211f693f7d2}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource files">
+      <UniqueIdentifier>{ab0d9a0b-ccf5-4a17-aad2-fe6d7d882501}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="VisualGDB settings">
+      <UniqueIdentifier>{d9f390cf-b0e9-4a5d-8208-3b3b088904c2}</UniqueIdentifier>
+      <Extensions>*.vgdbsettings</Extensions>
+    </Filter>
+    <Filter Include="Header files\include">
+      <UniqueIdentifier>{8eef2c3e-7907-4e4d-94a3-43fb4b9c5e1b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="build68k-Debug.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+    <None Include="build68k-Release.vgdbsettings">
+      <Filter>VisualGDB settings</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\build68k.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\include\akiko.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\audio.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\autoconf.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\blit.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\blitfunc.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\blitter.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\blkdev.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\bsdsocket.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\calc.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\cia.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\clipboard.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\commpipe.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\cpu_prefetch.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\cputbl.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\crc32.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\custom.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\debug.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\disk.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\diskutil.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\drawing.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\ersatz.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\events.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\execio.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\execlib.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\filesys.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\flags_arm.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\fpp-ieee-be.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\fpp-unknown.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\fsdb.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\fsusage.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\genblitter.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\gensound.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\gfxboard.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\gui.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\inputdevice.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\keyboard.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\keybuf.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\mackbd.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\memory.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\native2amiga.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\native2amiga_api.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\newcpu.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\options.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\osemu.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\picasso96.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\readcpu.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\rommgr.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\rtgmodes.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\savestate.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\scsi.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\scsidev.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\statusline.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\sysdeps.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\traps.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\uae.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\uaeresource.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\xwin.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\zarchive.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\zfile.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|VisualGDB">
+      <Configuration>Debug</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|VisualGDB">
+      <Configuration>Release</Configuration>
+      <Platform>VisualGDB</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3F1B855F-E3CF-4431-BABD-213056054581}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <GNUConfigurationType>Debug</GNUConfigurationType>
+    <Toolchain>c:\SysGCC\raspberry</Toolchain>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <Toolchain>c:\SysGCC\raspberry</Toolchain>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|VisualGDB'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../src/include;../../src;../../src/od-pandora;=/usr/include/SDL;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>DEBUG=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>SDL;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <LinkerScript />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|VisualGDB'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>../../src/include;../../src;../../src/od-pandora;%(ClCompile.AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG=1;RELEASE=1;%(ClCompile.PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalLinkerInputs>;%(Link.AdditionalLinkerInputs)</AdditionalLinkerInputs>
+      <LibrarySearchDirectories>;%(Link.LibrarySearchDirectories)</LibrarySearchDirectories>
+      <AdditionalLibraryNames>;%(Link.AdditionalLibraryNames)</AdditionalLibraryNames>
+      <LinkerScript />
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <None Include="build68k-Debug.vgdbsettings" />
+    <None Include="build68k-Release.vgdbsettings" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\build68k.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\include\akiko.h" />
+    <ClInclude Include="..\..\src\include\audio.h" />
+    <ClInclude Include="..\..\src\include\autoconf.h" />
+    <ClInclude Include="..\..\src\include\blit.h" />
+    <ClInclude Include="..\..\src\include\blitfunc.h" />
+    <ClInclude Include="..\..\src\include\blitter.h" />
+    <ClInclude Include="..\..\src\include\blkdev.h" />
+    <ClInclude Include="..\..\src\include\bsdsocket.h" />
+    <ClInclude Include="..\..\src\include\calc.h" />
+    <ClInclude Include="..\..\src\include\cia.h" />
+    <ClInclude Include="..\..\src\include\clipboard.h" />
+    <ClInclude Include="..\..\src\include\commpipe.h" />
+    <ClInclude Include="..\..\src\include\cputbl.h" />
+    <ClInclude Include="..\..\src\include\cpu_prefetch.h" />
+    <ClInclude Include="..\..\src\include\crc32.h" />
+    <ClInclude Include="..\..\src\include\custom.h" />
+    <ClInclude Include="..\..\src\include\debug.h" />
+    <ClInclude Include="..\..\src\include\disk.h" />
+    <ClInclude Include="..\..\src\include\diskutil.h" />
+    <ClInclude Include="..\..\src\include\drawing.h" />
+    <ClInclude Include="..\..\src\include\ersatz.h" />
+    <ClInclude Include="..\..\src\include\events.h" />
+    <ClInclude Include="..\..\src\include\execio.h" />
+    <ClInclude Include="..\..\src\include\execlib.h" />
+    <ClInclude Include="..\..\src\include\filesys.h" />
+    <ClInclude Include="..\..\src\include\flags_arm.h" />
+    <ClInclude Include="..\..\src\include\fpp-ieee-be.h" />
+    <ClInclude Include="..\..\src\include\fpp-unknown.h" />
+    <ClInclude Include="..\..\src\include\fsdb.h" />
+    <ClInclude Include="..\..\src\include\fsusage.h" />
+    <ClInclude Include="..\..\src\include\genblitter.h" />
+    <ClInclude Include="..\..\src\include\gensound.h" />
+    <ClInclude Include="..\..\src\include\gfxboard.h" />
+    <ClInclude Include="..\..\src\include\gui.h" />
+    <ClInclude Include="..\..\src\include\inputdevice.h" />
+    <ClInclude Include="..\..\src\include\keyboard.h" />
+    <ClInclude Include="..\..\src\include\keybuf.h" />
+    <ClInclude Include="..\..\src\include\mackbd.h" />
+    <ClInclude Include="..\..\src\include\memory.h" />
+    <ClInclude Include="..\..\src\include\native2amiga.h" />
+    <ClInclude Include="..\..\src\include\native2amiga_api.h" />
+    <ClInclude Include="..\..\src\include\newcpu.h" />
+    <ClInclude Include="..\..\src\include\options.h" />
+    <ClInclude Include="..\..\src\include\osemu.h" />
+    <ClInclude Include="..\..\src\include\picasso96.h" />
+    <ClInclude Include="..\..\src\include\readcpu.h" />
+    <ClInclude Include="..\..\src\include\rommgr.h" />
+    <ClInclude Include="..\..\src\include\rtgmodes.h" />
+    <ClInclude Include="..\..\src\include\savestate.h" />
+    <ClInclude Include="..\..\src\include\scsi.h" />
+    <ClInclude Include="..\..\src\include\scsidev.h" />
+    <ClInclude Include="..\..\src\include\statusline.h" />
+    <ClInclude Include="..\..\src\include\sysdeps.h" />
+    <ClInclude Include="..\..\src\include\traps.h" />
+    <ClInclude Include="..\..\src\include\uae.h" />
+    <ClInclude Include="..\..\src\include\uaeresource.h" />
+    <ClInclude Include="..\..\src\include\xwin.h" />
+    <ClInclude Include="..\..\src\include\zarchive.h" />
+    <ClInclude Include="..\..\src\include\zfile.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

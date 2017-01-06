@@ -558,6 +558,12 @@
     <ClCompile Include="..\..\src\archivers\zip\unzip.cpp">
       <Filter>Source files\archivers\zip</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\gayle.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\scsi.cpp">
+      <Filter>Source files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\data\35floppy.ico">
@@ -953,6 +959,48 @@
     </ClInclude>
     <ClInclude Include="..\..\src\archivers\zip\unzip.h">
       <Filter>Header files\archivers\zip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\gayle.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\a2091.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\ncr_scsi.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\ide.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\idecontrollers.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\pci.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\pci_hw.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\inputrecord.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\catweasel.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\arcadia.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\dongle.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\cdtv.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\tabletlibrary.h">
+      <Filter>Header files\include</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\include\videograb.h">
+      <Filter>Header files\include</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
