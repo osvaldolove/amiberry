@@ -558,6 +558,9 @@
     <ClCompile Include="..\..\src\scsi.cpp">
       <Filter>Source files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\osdep\rasp_gfx.cpp">
+      <Filter>Source files\osdep</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\data\35floppy.ico">
