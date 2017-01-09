@@ -1,15 +1,15 @@
- /*
-  * UAE - The Un*x Amiga Emulator
-  *
-  * memory management
-  *
-  * Copyright 1995 Bernd Schmidt
-  */
+/*
+* UAE - The Un*x Amiga Emulator
+*
+* memory management
+*
+* Copyright 1995 Bernd Schmidt
+*/
 
-#ifndef MEMORY_H
-#define MEMORY_H
+#ifndef UAE_MEMORY_H
+#define UAE_MEMORY_H
 
-extern void memory_reset (void);
+extern void memory_reset(void);
 extern void memory_restore(void);
 extern void a1000_reset(void);
 
@@ -33,10 +33,6 @@ extern bool jit_direct_compatible_memory;
 #define AUTOCONFIG_Z2_MEM 0x00200000
 #define AUTOCONFIG_Z3 0xff000000
 
-#ifdef PANDORA
-extern uae_u8* natmem_offset;
-#endif
-
 #ifdef ADDRESS_SPACE_24BIT
 #define MEMORY_BANKS 256
 #define MEMORY_RANGE_MASK ((1<<24)-1)
@@ -46,9 +42,9 @@ extern uae_u8* natmem_offset;
 #endif
 
 typedef uae_u32(REGPARAM3 *mem_get_func)(uaecptr) REGPARAM;
-typedef void (REGPARAM3 *mem_put_func)(uaecptr, uae_u32) REGPARAM;
+typedef void(REGPARAM3 *mem_put_func)(uaecptr, uae_u32) REGPARAM;
 typedef uae_u8 *(REGPARAM3 *xlate_func)(uaecptr) REGPARAM;
-typedef int (REGPARAM3 *check_func)(uaecptr, uae_u32) REGPARAM;
+typedef int(REGPARAM3 *check_func)(uaecptr, uae_u32) REGPARAM;
 
 extern uae_u32 max_z3fastmem;
 
@@ -81,10 +77,22 @@ extern uae_u8* baseaddr[];
 
 enum
 {
-	ABFLAG_UNK = 0, ABFLAG_RAM = 1, ABFLAG_ROM = 2, ABFLAG_ROMIN = 4, ABFLAG_IO = 8,
-	ABFLAG_NONE = 16, ABFLAG_SAFE = 32, ABFLAG_INDIRECT = 64, ABFLAG_NOALLOC = 128,
-	ABFLAG_RTG = 256, ABFLAG_THREADSAFE = 512, ABFLAG_DIRECTMAP = 1024, ABFLAG_ALLOCINDIRECT = 2048,
-	ABFLAG_CHIPRAM = 4096, ABFLAG_CIA = 8192, ABFLAG_PPCIOSPACE = 16384,
+	ABFLAG_UNK           = 0,
+	ABFLAG_RAM           = 1,
+	ABFLAG_ROM           = 2,
+	ABFLAG_ROMIN         = 4,
+	ABFLAG_IO            = 8,
+	ABFLAG_NONE          = 16,
+	ABFLAG_SAFE          = 32,
+	ABFLAG_INDIRECT      = 64,
+	ABFLAG_NOALLOC       = 128,
+	ABFLAG_RTG           = 256,
+	ABFLAG_THREADSAFE    = 512,
+	ABFLAG_DIRECTMAP     = 1024,
+	ABFLAG_ALLOCINDIRECT = 2048,
+	ABFLAG_CHIPRAM       = 4096,
+	ABFLAG_CIA           = 8192,
+	ABFLAG_PPCIOSPACE    = 16384,
 };
 typedef struct {
 	/* These ones should be self-explanatory... */
@@ -278,6 +286,7 @@ MEMORY_WPUT(name); \
 MEMORY_BPUT(name); \
 MEMORY_CHECK(name); \
 MEMORY_XLATE(name);
+
 
 #define MEMORY_ARRAY_LGET(name, index) \
 static uae_u32 REGPARAM3 name ## index ## _lget (uaecptr) REGPARAM; \
@@ -551,8 +560,8 @@ STATIC_INLINE uae_u32 get_wordi_jit(uaecptr addr)
 }
 
 /*
- * Read a host pointer from addr
- */
+* Read a host pointer from addr
+*/
 #if SIZEOF_VOID_P == 4
 # define get_pointer(addr) ((void *)get_long (addr))
 #else
@@ -568,7 +577,7 @@ STATIC_INLINE void *get_pointer(uaecptr addr)
 
 	for (i = 0; i < n; i++) {
 #ifdef WORDS_BIGENDIAN
-		p.longs[i] = get_long(addr + i * 4);
+		p.longs[i]     = get_long(addr + i * 4);
 #else
 		p.longs[n - 1 - i] = get_long(addr + i * 4);
 #endif
@@ -625,9 +634,10 @@ extern uae_u32 get_long_slow(uaecptr addr);
 extern uae_u32 get_word_slow(uaecptr addr);
 extern uae_u32 get_byte_slow(uaecptr addr);
 
+
 /*
- * Store host pointer v at addr
- */
+* Store host pointer v at addr
+*/
 #if SIZEOF_VOID_P == 4
 # define put_pointer(addr, p) (put_long ((addr), (uae_u32)(p)))
 #else
@@ -718,10 +728,10 @@ extern void REGPARAM3 chipmem_bput_c2(uaecptr, uae_u32) REGPARAM;
 extern uae_u32(REGPARAM3 *chipmem_lget_indirect)(uaecptr) REGPARAM;
 extern uae_u32(REGPARAM3 *chipmem_wget_indirect)(uaecptr) REGPARAM;
 extern uae_u32(REGPARAM3 *chipmem_bget_indirect)(uaecptr) REGPARAM;
-extern void (REGPARAM3 *chipmem_lput_indirect)(uaecptr, uae_u32) REGPARAM;
-extern void (REGPARAM3 *chipmem_wput_indirect)(uaecptr, uae_u32) REGPARAM;
-extern void (REGPARAM3 *chipmem_bput_indirect)(uaecptr, uae_u32) REGPARAM;
-extern int (REGPARAM3 *chipmem_check_indirect)(uaecptr, uae_u32) REGPARAM;
+extern void(REGPARAM3 *chipmem_lput_indirect)(uaecptr, uae_u32) REGPARAM;
+extern void(REGPARAM3 *chipmem_wput_indirect)(uaecptr, uae_u32) REGPARAM;
+extern void(REGPARAM3 *chipmem_bput_indirect)(uaecptr, uae_u32) REGPARAM;
+extern int(REGPARAM3 *chipmem_check_indirect)(uaecptr, uae_u32) REGPARAM;
 extern uae_u8 *(REGPARAM3 *chipmem_xlate_indirect)(uaecptr) REGPARAM;
 
 #ifdef NATMEM_OFFSET

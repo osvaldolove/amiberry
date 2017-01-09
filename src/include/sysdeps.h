@@ -26,11 +26,19 @@
 #ifdef __cplusplus
 #include <string>
 using namespace std;
+#else
+#include <string.h>
+#include <ctype.h>
+#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
 #include <assert.h>
 #include <limits.h>
+
+#ifndef UAE
+#define UAE
+#endif
 
 #if defined(__x86_64__) || defined(_M_AMD64)
 #define CPU_x86_64 1
@@ -64,16 +72,6 @@ using namespace std;
 #define REGPARAM
 #define REGPARAM2 JITCALL
 #define REGPARAM3 JITCALL
-
-//#ifdef _GCCRES_
-//#undef _GCCRES_
-//#endif
-//
-//#ifdef UAE4ALL_NO_USE_RESTRICT
-//#define _GCCRES_
-//#else
-//#define _GCCRES_ __restrict__
-//#endif
 
 #ifndef __STDC__
 #ifndef _MSC_VER
@@ -226,20 +224,24 @@ uae_u32 atomic_bit_test_and_reset(volatile uae_atomic *p, uae_u32 v);
 #else
 extern TCHAR *my_strdup (const TCHAR*s);
 #endif
-
-extern TCHAR *my_strdup_ansi (const char*);
-extern void my_trim (TCHAR*);
-extern TCHAR *my_strdup_trim (const TCHAR*);
-extern TCHAR *au (const char*);
-extern char *ua (const TCHAR*);
-extern TCHAR *au_fs (const char*);
-extern char *ua_fs (const TCHAR*, int);
-extern char *ua_copy (char *dst, int maxlen, const TCHAR *src);
-extern TCHAR *au_copy (TCHAR *dst, int maxlen, const char *src);
-extern char *ua_fs_copy (char *dst, int maxlen, const TCHAR *src, int defchar);
-extern TCHAR *au_fs_copy (TCHAR *dst, int maxlen, const char *src);
-extern char *uutf8 (const TCHAR *s);
-extern TCHAR *utf8u (const char *s);
+extern TCHAR *my_strdup_ansi(const char*);
+extern void my_trim(TCHAR*);
+extern TCHAR *my_strdup_trim(const TCHAR*);
+extern TCHAR *au(const char*);
+extern char *ua(const TCHAR*);
+extern TCHAR *aucp(const char *s, unsigned int cp);
+extern char *uacp(const TCHAR *s, unsigned int cp);
+extern TCHAR *au_fs(const char*);
+extern char *ua_fs(const TCHAR*, int);
+extern char *ua_copy(char *dst, int maxlen, const TCHAR *src);
+extern TCHAR *au_copy(TCHAR *dst, int maxlen, const char *src);
+extern char *ua_fs_copy(char *dst, int maxlen, const TCHAR *src, int defchar);
+extern TCHAR *au_fs_copy(TCHAR *dst, int maxlen, const char *src);
+extern char *uutf8(const TCHAR *s);
+extern TCHAR *utf8u(const char *s);
+extern void unicode_init(void);
+extern void to_lower(TCHAR *s, int len);
+extern void to_upper(TCHAR *s, int len);
 
 /* We can only rely on GNU C getting enums right. Mickeysoft VSC++ is known
  * to have problems, and it's likely that other compilers choke too. */
@@ -272,7 +274,6 @@ extern TCHAR *utf8u (const char *s);
 #undef DONT_HAVE_MALLOC
 
 #if defined PANDORA
-
 #include <ctype.h>
 
 #define FILEFLAG_DIR     0x1
@@ -282,100 +283,92 @@ extern TCHAR *utf8u (const char *s);
 #define FILEFLAG_EXECUTE 0x10
 #define FILEFLAG_SCRIPT  0x20
 #define FILEFLAG_PURE    0x40
-
-//#define abort() \
-//  do { \
-//    printf ("Internal error; file %s, line %d\n", __FILE__, __LINE__); \
-//    SDL_Quit(); \
-//    (abort) (); \
-//} while (0)
-
 #endif
 
 #if defined(WARPUP)
 #define DONT_HAVE_POSIX
 #endif
 
-//#if !defined(FSUAE) && defined _WIN32
-//
-// //#ifdef FSUAE
-// //#error _WIN32 should not be defined here
-// //#endif
-//#if defined __WATCOMC__
-//
-//#define O_NDELAY 0
-//#include <direct.h>
-//#define dirent direct
-//#define mkdir(a,b) mkdir(a)
-//#define strcasecmp stricmp
-//
-//#elif defined __MINGW32__
-//
-//#include <winsock.h>
-//
-//#define O_NDELAY 0
-//
-//#define FILEFLAG_DIR     0x1
-//#define FILEFLAG_ARCHIVE 0x2
-//#define FILEFLAG_WRITE   0x4
-//#define FILEFLAG_READ    0x8
-//#define FILEFLAG_EXECUTE 0x10
-//#define FILEFLAG_SCRIPT  0x20
-//#define FILEFLAG_PURE    0x40
-//
-//#define mkdir(a,b) mkdir(a)
-//
-//#elif defined _MSC_VER
-//
-//#ifdef HAVE_GETTIMEOFDAY
-//#include <winsock.h> // for 'struct timeval' definition
-//extern void gettimeofday(struct timeval *tv, void *blah);
-//#endif
-//
-//#define O_NDELAY 0
-//
-//#define FILEFLAG_DIR     0x1
-//#define FILEFLAG_ARCHIVE 0x2
-//#define FILEFLAG_WRITE   0x4
-//#define FILEFLAG_READ    0x8
-//#define FILEFLAG_EXECUTE 0x10
-//#define FILEFLAG_SCRIPT  0x20
-//#define FILEFLAG_PURE    0x40
-//
-//#include <io.h>
-//#define O_BINARY _O_BINARY
-//#define O_WRONLY _O_WRONLY
-//#define O_RDONLY _O_RDONLY
-//#define O_RDWR   _O_RDWR
-//#define O_CREAT  _O_CREAT
-//#define O_TRUNC  _O_TRUNC
-//#define strcasecmp _tcsicmp 
-//#define strncasecmp _tcsncicmp 
-//#define W_OK 0x2
-//#define R_OK 0x4
-//#define STAT struct stat
-//#define DIR struct DIR
-//struct direct
-//{
-//	TCHAR d_name[1];
-//};
-//#include <sys/utime.h>
-//#define utimbuf __utimbuf64
-//#define USE_ZFILE
-//
-//#undef S_ISDIR
-//#undef S_IWUSR
-//#undef S_IRUSR
-//#undef S_IXUSR
-//#define S_ISDIR(a) (a&FILEFLAG_DIR)
-//#define S_ISARC(a) (a&FILEFLAG_ARCHIVE)
-//#define S_IWUSR FILEFLAG_WRITE
-//#define S_IRUSR FILEFLAG_READ
-//#define S_IXUSR FILEFLAG_EXECUTE
-//
-//#endif
-//
-//#endif /* _WIN32 */
+#if !defined(FSUAE) && defined _WIN32
+
+ //#ifdef FSUAE
+ //#error _WIN32 should not be defined here
+ //#endif
+#if defined __WATCOMC__
+
+#define O_NDELAY 0
+#include <direct.h>
+#define dirent direct
+#define mkdir(a,b) mkdir(a)
+#define strcasecmp stricmp
+
+#elif defined __MINGW32__
+
+#include <winsock.h>
+
+#define O_NDELAY 0
+
+#define FILEFLAG_DIR     0x1
+#define FILEFLAG_ARCHIVE 0x2
+#define FILEFLAG_WRITE   0x4
+#define FILEFLAG_READ    0x8
+#define FILEFLAG_EXECUTE 0x10
+#define FILEFLAG_SCRIPT  0x20
+#define FILEFLAG_PURE    0x40
+
+#define mkdir(a,b) mkdir(a)
+
+#elif defined _MSC_VER
+
+#ifdef HAVE_GETTIMEOFDAY
+#include <winsock.h> // for 'struct timeval' definition
+extern void gettimeofday(struct timeval *tv, void *blah);
+#endif
+
+#define O_NDELAY 0
+
+#define FILEFLAG_DIR     0x1
+#define FILEFLAG_ARCHIVE 0x2
+#define FILEFLAG_WRITE   0x4
+#define FILEFLAG_READ    0x8
+#define FILEFLAG_EXECUTE 0x10
+#define FILEFLAG_SCRIPT  0x20
+#define FILEFLAG_PURE    0x40
+
+#include <io.h>
+#define O_BINARY _O_BINARY
+#define O_WRONLY _O_WRONLY
+#define O_RDONLY _O_RDONLY
+#define O_RDWR   _O_RDWR
+#define O_CREAT  _O_CREAT
+#define O_TRUNC  _O_TRUNC
+#define strcasecmp _tcsicmp 
+#define strncasecmp _tcsncicmp 
+#define W_OK 0x2
+#define R_OK 0x4
+#define STAT struct stat
+#define DIR struct DIR
+struct direct
+{
+	TCHAR d_name[1];
+};
+#include <sys/utime.h>
+#define utimbuf __utimbuf64
+#define USE_ZFILE
+
+#undef S_ISDIR
+#undef S_IWUSR
+#undef S_IRUSR
+#undef S_IXUSR
+#define S_ISDIR(a) (a&FILEFLAG_DIR)
+#define S_ISARC(a) (a&FILEFLAG_ARCHIVE)
+#define S_IWUSR FILEFLAG_WRITE
+#define S_IRUSR FILEFLAG_READ
+#define S_IXUSR FILEFLAG_EXECUTE
+
+#endif
+
+#endif /* _WIN32 */
 
 #ifdef DONT_HAVE_POSIX
 
@@ -456,6 +449,8 @@ extern void mallocemu_free (void *ptr);
 #define ASM_SYM_FOR_FUNC(a)
 #endif
 
+#include "target.h"
+
 #ifdef UAE_CONSOLE
 #undef write_log
 #define write_log write_log_standard
@@ -511,8 +506,6 @@ extern void log_close(FILE *f);
 #endif
 #endif
 
-#include "target.h"
-
 /* Every Amiga hardware clock cycle takes this many "virtual" cycles.  This
    used to be hardcoded as 1, but using higher values allows us to time some
    stuff more precisely.
@@ -540,7 +533,6 @@ extern void log_close(FILE *f);
  */
 
 #ifdef ARMV6_ASSEMBLY
-
 STATIC_INLINE uae_u32 do_byteswap_32(uae_u32 v) {__asm__ (
 						"rev %0, %0"
                                                 : "=r" (v) : "0" (v) ); return v;}
@@ -549,11 +541,24 @@ STATIC_INLINE uae_u32 do_byteswap_16(uae_u32 v) {__asm__ (
   						"revsh %0, %0\n\t"
               "uxth %0, %0"
                                                 : "=r" (v) : "0" (v) ); return v;}
-
+#else/* Try to use system bswap_16/bswap_32 functions. */
+#if defined HAVE_BSWAP_16 && defined HAVE_BSWAP_32
+# include <byteswap.h>
+#  ifdef HAVE_BYTESWAP_H
+#  include <byteswap.h>
+# endif
+#else
+/* Else, if using SDL, try SDL's endian functions. */
+# ifdef USE_SDL
+#  include <SDL_endian.h>
+#  define bswap_16(x) SDL_Swap16(x)
+#  define bswap_32(x) SDL_Swap32(x)
+# else
+/* Otherwise, we'll roll our own. */
+#  define bswap_16(x) (((x) >> 8) | (((x) & 0xFF) << 8))
+#  define bswap_32(x) (((x) << 24) | (((x) << 8) & 0x00FF0000) | (((x) >> 8) & 0x0000FF00) | ((x) >> 24))
+# endif
 #endif
-
-#define bswap_16(x) (((x) >> 8) | (((x) & 0xFF) << 8))
-
 #endif
 
 #ifndef __cplusplus

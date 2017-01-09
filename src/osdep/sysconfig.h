@@ -1,4 +1,12 @@
+#ifndef WINUAE_SYSCONFIG_H
+#define WINUAE_SYSCONFIG_H
 
+#pragma warning (disable : 4761)
+#pragma warning (disable : 4996)
+#pragma warning (disable : 4018)
+
+//#define DIRECTINPUT_VERSION  0x0800
+//#define DIRECT3D_VERSION 0x0900
 #define SUPPORT_THREADS
 #define MAX_DPATH 1000
 
@@ -23,8 +31,8 @@
 #define AUTOCONFIG /* autoconfig support, fast ram, harddrives etc.. */
 #define JIT /* JIT compiler support */
 #define USE_JIT_FPU
-//#define NATMEM_OFFSET natmem_offset
-//#define USE_NORMAL_CALLING_CONVENTION 0
+#define NATMEM_OFFSET natmem_offset
+#define USE_NORMAL_CALLING_CONVENTION 0
 //#define USE_X86_FPUCW 1
 //#define WINDDK /* Windows DDK available, keyboard leds and harddrive support */
 //#define CATWEASEL /* Catweasel MK2/3 support */
@@ -306,7 +314,12 @@ typedef long uae_atomic;
 #define SIZEOF_DOUBLE 8
 
 #define HAVE_ISNAN
-#define HAVE_ISINF
+#undef HAVE_ISINF
+#define isnan _isnan
+
+#ifndef LT_MODULE_EXT
+#define LT_MODULE_EXT _T(".dll")
+#endif
 
 /* Define if you have the bcopy function.  */
 #define HAVE_BCOPY 1
@@ -542,6 +555,10 @@ typedef long uae_atomic;
 #define FSDB_DIR_SEPARATOR '/'
 #define FSDB_DIR_SEPARATOR_S "/"
 
+/* Define to 1 if `S_un' is a member of `struct in_addr'. */
+#define HAVE_STRUCT_IN_ADDR_S_UN 1
+
+
 #define strcmpi(x,y) strcasecmp(x,y)
 #define stricmp(x,y) strcasecmp(x,y)
 
@@ -608,3 +625,5 @@ typedef unsigned short USHORT;
 #define _strtoui64(x,y,z)   strtoll(x,y,z)
 #define _istalnum(x)        isalnum(x)
 #define _tcsspn(x,y)		    strspn(x,y)
+
+#endif /* WINUAE_SYSCONFIG_H */
