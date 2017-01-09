@@ -34,7 +34,7 @@
 #define _NEWCPU_H
 
 #include "readcpu.h"
-#include "md-pandora/m68k.h"
+#include "machdep/m68k.h"
 #include "events.h"
 
 #ifndef SET_CFLG

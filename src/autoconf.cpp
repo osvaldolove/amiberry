@@ -21,7 +21,7 @@
 #include "autoconf.h"
 #include "traps.h"
 #include "debug.h"
-#include "td-sdl/thread.h"
+#include "threaddep/thread.h"
 #include "native2amiga.h"
 #include "inputdevice.h"
 //#include "uae/ppc.h"

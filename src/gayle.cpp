@@ -23,7 +23,7 @@
 #include "savestate.h"
 #include "uae.h"
 #include "gui.h"
-#include "td-sdl/thread.h"
+#include "threaddep/thread.h"
 #include "a2091.h"
 #include "ncr_scsi.h"
 #include "blkdev.h"
