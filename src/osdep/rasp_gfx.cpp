@@ -329,7 +329,7 @@ int check_prefs_changed_gfx(void)
 	if (currprefs.chipset_refreshrate != changed_prefs.chipset_refreshrate) 
 	{
 		currprefs.chipset_refreshrate = changed_prefs.chipset_refreshrate;
-		init_hz_full();
+		init_hz_normal();
 		changed = 1;
 	}
   

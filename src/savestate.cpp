@@ -613,7 +613,7 @@ void savestate_restore_finish (void)
 #endif
 	restore_cia_finish ();
 	savestate_state = 0;
-  init_hz_full ();
+	init_hz_normal();
 	audio_activate ();
 }
 

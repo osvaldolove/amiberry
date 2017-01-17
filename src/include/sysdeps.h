@@ -466,14 +466,10 @@ STATIC_INLINE uae_u32 do_byteswap_16(uae_u32 v) {
 #  include <SDL_endian.h>
 #  define bswap_16(x) SDL_Swap16(x)
 #  define bswap_32(x) SDL_Swap32(x)
-# else
-/* Otherwise, we'll roll our own. */
-#define bswap_16(x) (((x) >> 8) | (((x) & 0xFF) << 8))
+# else/* Otherwise, we'll roll our own. */#define bswap_16(x) (((x) >> 8) | (((x) & 0xFF) << 8))
 #define bswap_32(x) (((x) << 24) | (((x) << 8) & 0x00FF0000) | (((x) >> 8) & 0x0000FF00) | ((x) >> 24))
 # endif
-#endif
-#endif
-
+#endif#endif
 #endif
 
 #ifndef __cplusplus
